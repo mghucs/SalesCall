@@ -1,4 +1,4 @@
-import ChatApp
+from generate import ChatApp
 
 chat = ChatApp()
 
@@ -9,7 +9,7 @@ def interactive():
             break
         else:
             chat.chat(com)
-    chat.save()
+    chat.save_to_file()
 
 if __name__ == "__main__":
     interactive()

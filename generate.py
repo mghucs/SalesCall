@@ -1,4 +1,5 @@
 from openai import OpenAI
+from mongo import Mongo
 import os
 import json
 import re
@@ -6,6 +7,7 @@ import time
 
 class ChatApp:
     def __init__(self):
+        self.mongo = Mongo()
         self.client = OpenAI(
             api_key=os.environ.get("OPENAI_API_KEY"),
         )
@@ -28,7 +30,7 @@ class ChatApp:
         print(reply)
         return reply
 
-    def save(self):
+    def save_to_file(self):
         """Saves the chat history to a JSON file."""
         try:
             ts = time.time()
@@ -37,6 +39,12 @@ class ChatApp:
                 outfile.write(json_object)
         except:
             os._exit(1)
+
+    def save_to_db(self):
+        """Saves the chat history to MongoDB."""
+        ts = time.time()
+        to_insert = {f"{int(ts)}": self.messages}
+        self.mongo.insert(to_insert)
 
     def load(self, load_file):
         """Loads chat history from a file.
@@ -54,8 +62,3 @@ class ChatApp:
         """
         self.load(load_file)
         self.chat(question)
-
-chat = ChatApp()
-
-# 3
-# chat.ask("We-are-in-a-sales-call-and-yo-1711582745-811244.json", "What product was the customer interested in?")

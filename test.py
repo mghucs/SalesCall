@@ -28,7 +28,7 @@ class Test(TestCase):
                 break
             else:
                 chat.chat(message)
-        chat.save()
+        chat.save_to_file()
     def test_ask(self):
         chat = ChatApp()
         chat.ask("1711586593.7863522.json", "What product was the customer interested in?")
