@@ -3,6 +3,16 @@ A project to generate a sales call and allow the user to interact with an assist
 as though the user were buying something or any other queries related to sales
 
 # Setup Instructions
+Create a .env file with the following variables
+
+OPENAI_API_KEY - Open AI API Key
+
+ATLAS_URI - The MongoDB URI for Atlas
+
+DB_NAME - Database name in MongoDB
+
+COLLECTION - Collection name for the DB
+
 ```pip install -r requirements.txt```
 
 # Usage Guide
@@ -21,4 +31,6 @@ I used a [github repo](https://github.com/stancsz/chatgpt/blob/master/ChatGPT.py
 
 I started with OpenAI's quickstart and looked at examples to learn how to generate chat completions. Then I organised the code based on objects. A central generate.py app with all the functions for chatting, saving, and loading. I created scripts based on each of the question prompts.
 
-I tested functionality with French and Spanish and lastly added Unittests
+I tested functionality with French and Spanish and lastly added Unittests.
+
+Finally, I persisted the transcripts data to MongoDB.
